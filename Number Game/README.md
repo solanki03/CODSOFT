@@ -1,4 +1,4 @@
-# 🪄 Guessing Game ✨
+# 🪄 Number Guessing Game ✨
 
 A simple Java Swing-based guessing game.
 
@@ -8,7 +8,7 @@ This project is a simple guessing game implemented in Java using Swing for the g
 
 ## 🌟 Features
 
-- Three difficulty levels: Easy, Medium, Hard.
+- Three difficulty levels: Easy, Medium, and Hard.
 - Limited attempts per round.
 - User feedback on each guess.
 - Total score calculation after completing all rounds.
@@ -22,6 +22,6 @@ This project is a simple guessing game implemented in Java using Swing for the g
 
 ## 👩‍💻 Code Structure:
 
-- `GUI` : This folder contains the Graphical User Interface part
-- `Backend` : This folder handles game calculations, including random number generation and scoring.
+- `GUI`: This folder contains the Graphical User Interface part
+- `Backend`: This folder handles game calculations, including random number generation and scoring.
 
