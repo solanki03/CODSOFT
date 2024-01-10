@@ -89,15 +89,6 @@ public class GameView extends BaseFrame {
         feedbackJLable.setForeground(TEXT_COLOR);
         feedbackJLable.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
-        // CREATE A PLAY AGAIN BUTTON
-        JButton playAgainButton = new JButton("Play Again");
-        playAgainButton.setBounds(440, 360, 150, 25);
-        playAgainButton.setFont(new Font("Tahoma", Font.BOLD, 15));
-        playAgainButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
-        // DISABLE PLAY AGAIN BUTTON
-        playAgainButton.setEnabled(false);
-
         // DISABLE GUESS TEXT FIELD & GUESS BUTTON
         guessTextField.setEditable(false);
         guessButton.setEnabled(false);
@@ -145,22 +136,8 @@ public class GameView extends BaseFrame {
             public void actionPerformed(ActionEvent e) {
 
                 Calculations.checkForWin(guessTextField, guessButton, feedbackJLable, attemptsLeft, attemptsJLable,
-                        roundCountLable, selectGameMode, scoreBoardLable, playAgainButton);
+                        roundCountLable, selectGameMode, scoreBoardLable);
 
-            }
-
-        });
-
-        // ACTION LISTENER FOR PLAY AGAIN BUTTON
-        playAgainButton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // DISPOSE GAME VIEW GUI
-                GameView.this.dispose();
-
-                // LAUNCH STARTING PAGE GUI
-                new StartingPage().setVisible(true);
             }
 
         });
@@ -176,7 +153,6 @@ public class GameView extends BaseFrame {
         add(guessButton);
         add(scoreBoardLable);
         add(feedbackJLable);
-        add(playAgainButton);
 
     }
 

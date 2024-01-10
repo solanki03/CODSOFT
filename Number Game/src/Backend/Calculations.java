@@ -52,7 +52,7 @@ public class Calculations {
     // CHECKS WIN CONDITIONS AND DISPLAYS THE OUTPUT IN FEED BACK SECTION
     public static void checkForWin(JTextField guessTextField, Component guessButton, JLabel feedBackJLabel,
             int attemptsLeft, JLabel attemptsJLable, JLabel roundCountLabel, String selectGameMode,
-            JLabel scoreBoardLable, JButton playAgainButton) {
+            JLabel scoreBoardLable) {
 
         // GET THE GUESSED VALUE
         String userGuess = guessTextField.getText();
@@ -130,9 +130,6 @@ public class Calculations {
                 feedBackJLabel.setText(
                         "<html>After 3 rounds, " + playerName + "'s total score is " + countTotal + " out of 450"
                                 + "<br><b>GAME OVER!</b></html>");
-
-                // ENABLE PLAY AGAIN BUTTON
-                playAgainButton.setEnabled(true);
 
             }
 
