@@ -22,6 +22,6 @@ This project is a simple guessing game implemented in Java using Swing for the g
 
 ## 👩‍💻 Code Structure:
 
-- `GUI`: This folder contains the Graphical User Interface part
+- `GUI`: This folder contains the Graphical User Interface part.
 - `Backend`: This folder handles game calculations, including random number generation and scoring.
 

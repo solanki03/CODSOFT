@@ -1,0 +1,118 @@
+package GUI;
+
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+
+public class Window extends JFrame {
+
+    //create the text color of GUI
+    final Color TEXT_COLOR = Color.decode("#170F5C");
+    
+    public Window() {
+        // set the title of the window
+        super("Word Counter");
+
+        //size of the GUI
+        setSize(800,400);
+
+        //set layout null to place components in the page
+        setLayout(null);
+         
+        //set GUI in the center of the screen
+        setLocationRelativeTo(null);
+
+        // prevent any resize of our GUI
+        setResizable(false);
+
+        // configure GUI to end the program's process once it has been closed
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        //create the background color of GUI
+        final Color PRIMARY_COLOR = Color.decode("#D2CEEF");
+        getContentPane().setBackground(PRIMARY_COLOR);
+
+        addGuiComponents();
+    }
+
+    private void addGuiComponents() {
+        // set the logo
+        JLabel logo = new JLabel();
+        logo.setIcon(new ImageIcon("src\\Assets\\computer.png"));
+        logo.setBounds(0,0,400,400);
+
+        // set the title
+        JLabel titleLable = new JLabel("Word Counter");
+        titleLable.setBounds(510, 50, 180, 25);
+        titleLable.setForeground(TEXT_COLOR);
+        titleLable.setFont(new Font("Tahoma", Font.BOLD, 25));
+        titleLable.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // set text area
+        JTextArea textArea = new JTextArea("Insert your text here...");
+        textArea.setBounds(430, 100, 325, 110);
+        textArea.setForeground(TEXT_COLOR);
+        textArea.setFont(new Font("Arial", Font.PLAIN, 12));
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setMargin(new Insets(5, 5,5,5));
+
+        // set scroll pane for the text area
+        JScrollPane scroll = new JScrollPane(textArea);
+        scroll.setBounds(430, 100, 325, 120);
+
+        // set the COUNT button
+        JButton countButton = new JButton("Count");
+        countButton.setBounds(675, 230, 80, 25);
+        countButton.setFont(new Font("Tahoma", Font.BOLD, 15));
+        countButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        countButton.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // set the CLEAR button
+        JButton clearButton = new JButton("Clear");
+        clearButton.setBounds(430, 230, 80, 25);
+        clearButton.setFont(new Font("Tahoma", Font.BOLD, 15));
+        clearButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        clearButton.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // add action listener for COUNT button
+        countButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+            }
+            
+        });
+
+        // add action listener for CLEAR button
+        clearButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // clear the text area
+            }
+            
+        });
+
+        // add components
+        add(logo);
+        add(titleLable);
+        add(scroll);
+        add(countButton);
+        add(clearButton);
+    }
+
+}
