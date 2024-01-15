@@ -1,4 +1,4 @@
-package GUI;
+package Gui;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -13,7 +13,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import Back_end.CountWords;
 
 public class Window extends JFrame {
 
@@ -22,7 +25,7 @@ public class Window extends JFrame {
     
     public Window() {
         // set the title of the window
-        super("Word Counter");
+        super("Word Counter :)");
 
         //size of the GUI
         setSize(800,400);
@@ -60,7 +63,7 @@ public class Window extends JFrame {
         titleLable.setHorizontalAlignment(SwingConstants.CENTER);
 
         // set text area
-        JTextArea textArea = new JTextArea("Insert your text here...");
+        JTextArea textArea = new JTextArea();
         textArea.setBounds(430, 100, 325, 110);
         textArea.setForeground(TEXT_COLOR);
         textArea.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -86,13 +89,41 @@ public class Window extends JFrame {
         clearButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         clearButton.setHorizontalAlignment(SwingConstants.CENTER);
 
+        // set the display words 
+        JLabel WordsJLable = new JLabel("Total Words:");
+        WordsJLable.setBounds(430, 270, 90, 25);
+        WordsJLable.setForeground(TEXT_COLOR);
+        WordsJLable.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
+        // set the text box to display total number of words
+        JTextField displayWordsTextField = new JTextField();
+        displayWordsTextField.setBounds(520, 270, 70, 25);
+        displayWordsTextField.setForeground(TEXT_COLOR);
+        displayWordsTextField.setFont(new Font("Arial",Font.PLAIN,12));
+
+        // set the display characters 
+        JLabel charJLable = new JLabel("Characters:");
+        charJLable.setBounds(430, 305, 90, 25);
+        charJLable.setForeground(TEXT_COLOR);
+        charJLable.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
+        // set the text box to display total number of characters
+        JTextField displayCharTextField = new JTextField();
+        displayCharTextField.setBounds(520, 305, 70, 25);
+        displayCharTextField.setForeground(TEXT_COLOR);
+        displayCharTextField.setFont(new Font("Arial",Font.PLAIN,12));
+
+        // set the text fields of words and character as disable
+        displayWordsTextField.setEditable(false);
+        displayCharTextField.setEditable(false);
+
         // add action listener for COUNT button
         countButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+                
+                CountWords.displayNumOfWordsChars(textArea, displayWordsTextField, displayCharTextField, countButton);
             }
             
         });
@@ -102,7 +133,10 @@ public class Window extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // clear the text area
+                
+                // method to clear area and text fields
+                CountWords.clearFields(textArea, displayWordsTextField, displayCharTextField, clearButton);
+                
             }
             
         });
@@ -113,6 +147,10 @@ public class Window extends JFrame {
         add(scroll);
         add(countButton);
         add(clearButton);
+        add(WordsJLable);
+        add(displayWordsTextField);
+        add(charJLable);
+        add(displayCharTextField);
     }
 
 }

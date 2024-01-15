@@ -1,6 +1,6 @@
 import javax.swing.SwingUtilities;
 
-import GUI.Window;
+import Gui.Window;
 
 public class Launcher {
     public static void main(String[] args) throws Exception {
