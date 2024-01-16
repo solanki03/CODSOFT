@@ -25,7 +25,7 @@ public class Window extends JFrame {
     
     public Window() {
         // set the title of the window
-        super("Word Counter :)");
+        super("Word Counter☆");
 
         //size of the GUI
         setSize(800,400);

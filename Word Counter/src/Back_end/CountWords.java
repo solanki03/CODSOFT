@@ -6,6 +6,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class CountWords {
+
     public static void displayNumOfWordsChars(JTextArea textArea, JTextField displayWordsTextField,
             JTextField displayCharTextField, JButton countButton) {
 
