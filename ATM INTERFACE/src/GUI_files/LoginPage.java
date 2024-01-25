@@ -2,12 +2,14 @@ package GUI_files;
 
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -19,9 +21,16 @@ public class LoginPage extends BaseInterface {
 
     private void addGuiComponents() {
 
+        // add logo to the frame
+        ImageIcon logo1 = new ImageIcon(ClassLoader.getSystemResource("Icons/Img2.png"));
+        Image img = logo1.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT);
+        ImageIcon imgIcon = new ImageIcon(img);
+        JLabel imglabel = new JLabel(imgIcon);
+        imglabel.setBounds(160, 20, 60, 60);
+
         // create a Jlable for welcome note
         JLabel titleLable = new JLabel("WELCOME TO ATM");
-        titleLable.setBounds(180, 30, 290, 50);
+        titleLable.setBounds(230, 30, 290, 50);
         titleLable.setForeground(TEXT_COLOR);
         titleLable.setFont(new Font("Tahoma", Font.BOLD, 30));
         titleLable.setHorizontalAlignment(SwingConstants.CENTER);
@@ -35,7 +44,7 @@ public class LoginPage extends BaseInterface {
         // create a JTextField to get card no.
         JTextField cardnoTextField = new JTextField();
         cardnoTextField.setBounds(330, 180, 200, 25);
-        cardnoTextField.setFont(new Font("Arial", Font.PLAIN, 15));
+        cardnoTextField.setFont(new Font("Arial", Font.BOLD, 15));
 
         // create a Jlable for pin no.
         JLabel pinJLable = new JLabel("Enter the pin :");
@@ -44,9 +53,9 @@ public class LoginPage extends BaseInterface {
         pinJLable.setFont(new Font("Tahoma", Font.BOLD, 20));
 
         // create a JTextField to get the pin
-        JTextField pinTextField = new JTextField();
-        pinTextField.setBounds(330, 220, 200, 25);
-        pinTextField.setFont(new Font("Arial", Font.PLAIN, 15));
+        JPasswordField pinPWField = new JPasswordField();
+        pinPWField.setBounds(330, 220, 200, 25);
+        pinPWField.setFont(new Font("Arial", Font.PLAIN, 15));
 
         // CREATE A Login BUTTON
         JButton loginButton = new JButton("LOG IN");
@@ -67,11 +76,12 @@ public class LoginPage extends BaseInterface {
         clearButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
         // Add components
+        add(imglabel);
         add(titleLable);
         add(cardNoLable);
         add(cardnoTextField);
         add(pinJLable);
-        add(pinTextField);
+        add(pinPWField);
         add(loginButton);
         add(registrationButton);
         add(clearButton);
@@ -81,12 +91,9 @@ public class LoginPage extends BaseInterface {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                String Ctext = cardnoTextField.getText();
-                String Ptext = pinTextField.getText();
 
-                // check fields are blank or not
             }
-            
+
         });
 
         // add action listener for Sign up button
@@ -94,28 +101,18 @@ public class LoginPage extends BaseInterface {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                String Ctext = cardnoTextField.getText();
-                String Ptext = pinTextField.getText();
-                
-                // check fields are blank or not
+
             }
-            
+
         });
 
         // add action listener for Clear button
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String Ctext = cardnoTextField.getText();
-                String Ptext = pinTextField.getText();
 
-                // check fields are blank or not
-                if(Ctext.isBlank() && Ptext.isBlank()){
-                    JOptionPane.showMessageDialog(clearButton, "Both fields are already empty!");
-                } else {
-                    cardnoTextField.setText("");
-                    pinTextField.setText("");
-                }
+                cardnoTextField.setText("");
+                pinPWField.setText("");
             }
         });
 

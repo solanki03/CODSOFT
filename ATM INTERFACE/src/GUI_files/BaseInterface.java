@@ -9,7 +9,7 @@ public class BaseInterface extends JFrame {
     public static Color TEXT_COLOR = Color.decode("#FFC300");
 
     public BaseInterface() {
-        // set the tite of the game
+        // set the tite of the frame
         super("Automated Teller Machine");
 
         // set the size of the GUI
