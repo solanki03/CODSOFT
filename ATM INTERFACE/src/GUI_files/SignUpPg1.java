@@ -1,7 +1,5 @@
 package GUI_files;
 
-import java.awt.Button;
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
@@ -18,11 +16,12 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.toedter.calendar.JDateChooser;
+import Constants.CommonConstants;
 
 public class SignUpPg1 extends JFrame {
 
-    public static Color TEXT_COLOR = Color.decode("#FFC300");
-    final Color REG_COLOR = Color.decode("#900C3F");
+    //public static Color TEXT_COLOR = Color.decode("#FFC300");
+    //final Color REG_COLOR = Color.decode("#900C3F");
 
     public SignUpPg1() {
         // set the tite of the game
@@ -44,7 +43,7 @@ public class SignUpPg1 extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         // create the background color of GUI
-        getContentPane().setBackground(REG_COLOR);
+        getContentPane().setBackground(CommonConstants.REG_COLOR);
 
         addComponents();
     }
@@ -57,7 +56,7 @@ public class SignUpPg1 extends JFrame {
         // create a application form label
         JLabel formNo = new JLabel("APPLICATION FORM NO. " + randomNum);
         formNo.setBounds(170, 20, 540, 40);
-        formNo.setForeground(TEXT_COLOR);
+        formNo.setForeground(CommonConstants.TEXT_COLOR);
         formNo.setFont(new Font("Tahoma", Font.BOLD, 35));
         formNo.setHorizontalAlignment(SwingConstants.CENTER);
         add(formNo);
@@ -73,14 +72,14 @@ public class SignUpPg1 extends JFrame {
         // create a personal details label
         JLabel personalDetails = new JLabel("Page 1: Personal Details");
         personalDetails.setBounds(290, 80, 300, 30);
-        personalDetails.setForeground(TEXT_COLOR);
+        personalDetails.setForeground(CommonConstants.TEXT_COLOR);
         personalDetails.setFont(new Font("Tahoma", Font.BOLD, 23));
         add(personalDetails);
 
         // create a username label
         JLabel userNamelabel = new JLabel("Name:");
         userNamelabel.setBounds(100, 150, 100, 30);
-        userNamelabel.setForeground(TEXT_COLOR);
+        userNamelabel.setForeground(CommonConstants.TEXT_COLOR);
         userNamelabel.setFont(new Font("Tahoma", Font.BOLD, 19));
         add(userNamelabel);
 
@@ -93,7 +92,7 @@ public class SignUpPg1 extends JFrame {
         // create a father's name label
         JLabel fNamelabel = new JLabel("Father's Name:");
         fNamelabel.setBounds(100, 200, 170, 30);
-        fNamelabel.setForeground(TEXT_COLOR);
+        fNamelabel.setForeground(CommonConstants.TEXT_COLOR);
         fNamelabel.setFont(new Font("Tahoma", Font.BOLD, 19));
         add(fNamelabel);
 
@@ -106,7 +105,7 @@ public class SignUpPg1 extends JFrame {
         // create a Date of Birth label
         JLabel DOBlabel = new JLabel("Date of Birth:");
         DOBlabel.setBounds(100, 250, 170, 30);
-        DOBlabel.setForeground(TEXT_COLOR);
+        DOBlabel.setForeground(CommonConstants.TEXT_COLOR);
         DOBlabel.setFont(new Font("Tahoma", Font.BOLD, 19));
         add(DOBlabel);
 
@@ -119,7 +118,7 @@ public class SignUpPg1 extends JFrame {
         // create a gender label
         JLabel genderlabel = new JLabel("Gender:");
         genderlabel.setBounds(100, 300, 100, 30);
-        genderlabel.setForeground(TEXT_COLOR);
+        genderlabel.setForeground(CommonConstants.TEXT_COLOR);
         genderlabel.setFont(new Font("Tahoma", Font.BOLD, 19));
         add(genderlabel);
 
@@ -127,22 +126,22 @@ public class SignUpPg1 extends JFrame {
         JRadioButton male = new JRadioButton("Male");
         male.setBounds(300,300,60,30);
         male.setFont(new Font("Arial", Font.BOLD, 15));
-        male.setForeground(TEXT_COLOR);
-        male.setBackground(REG_COLOR);
+        male.setForeground(CommonConstants.TEXT_COLOR);
+        male.setBackground(CommonConstants.REG_COLOR);
         add(male);
 
         JRadioButton female = new JRadioButton("Female");
         female.setBounds(435,300,80,30);
         female.setFont(new Font("Arial", Font.BOLD, 15));
-        female.setForeground(TEXT_COLOR);
-        female.setBackground(REG_COLOR);
+        female.setForeground(CommonConstants.TEXT_COLOR);
+        female.setBackground(CommonConstants.REG_COLOR);
         add(female);
 
         JRadioButton transgender = new JRadioButton("Transgender");
         transgender.setBounds(580,300,130,30);
         transgender.setFont(new Font("Arial", Font.BOLD, 15));
-        transgender.setForeground(TEXT_COLOR);
-        transgender.setBackground(REG_COLOR);
+        transgender.setForeground(CommonConstants.TEXT_COLOR);
+        transgender.setBackground(CommonConstants.REG_COLOR);
         add(transgender);
 
         // add fuctionality to select any one of the three options - Male, Female & Transgender
@@ -154,7 +153,7 @@ public class SignUpPg1 extends JFrame {
         // create a Email label
         JLabel emaillabel = new JLabel("Email Address:");
         emaillabel.setBounds(100, 350, 170, 30);
-        emaillabel.setForeground(TEXT_COLOR);
+        emaillabel.setForeground(CommonConstants.TEXT_COLOR);
         emaillabel.setFont(new Font("Tahoma", Font.BOLD, 19));
         add(emaillabel);
 
@@ -167,7 +166,7 @@ public class SignUpPg1 extends JFrame {
         // create a Marital Status label
         JLabel maritalStatuslabel = new JLabel("Marital Status:");
         maritalStatuslabel.setBounds(100, 400, 170, 30);
-        maritalStatuslabel.setForeground(TEXT_COLOR);
+        maritalStatuslabel.setForeground(CommonConstants.TEXT_COLOR);
         maritalStatuslabel.setFont(new Font("Tahoma", Font.BOLD, 19));
         add(maritalStatuslabel);
 
@@ -175,22 +174,22 @@ public class SignUpPg1 extends JFrame {
         JRadioButton married = new JRadioButton("Married");
         married.setBounds(300,400,100,30);
         married.setFont(new Font("Arial", Font.BOLD, 15));
-        married.setForeground(TEXT_COLOR);
-        married.setBackground(REG_COLOR);
+        married.setForeground(CommonConstants.TEXT_COLOR);
+        married.setBackground(CommonConstants.REG_COLOR);
         add(married);
 
         JRadioButton unmarried = new JRadioButton("Unmarried");
         unmarried.setBounds(450,400,120,30);
         unmarried.setFont(new Font("Arial", Font.BOLD, 15));
-        unmarried.setForeground(TEXT_COLOR);
-        unmarried.setBackground(REG_COLOR);
+        unmarried.setForeground(CommonConstants.TEXT_COLOR);
+        unmarried.setBackground(CommonConstants.REG_COLOR);
         add(unmarried);
 
         JRadioButton others = new JRadioButton("Other");
         others.setBounds(630,400,80,30);
         others.setFont(new Font("Arial", Font.BOLD, 15));
-        others.setForeground(TEXT_COLOR);
-        others.setBackground(REG_COLOR);
+        others.setForeground(CommonConstants.TEXT_COLOR);
+        others.setBackground(CommonConstants.REG_COLOR);
         add(others);
 
         // add fuctionality to select any one of the three options - married, unmarried & other
@@ -202,7 +201,7 @@ public class SignUpPg1 extends JFrame {
         // create a user address label
         JLabel addresslabel = new JLabel("Address:");
         addresslabel.setBounds(100, 450, 100, 30);
-        addresslabel.setForeground(TEXT_COLOR);
+        addresslabel.setForeground(CommonConstants.TEXT_COLOR);
         addresslabel.setFont(new Font("Tahoma", Font.BOLD, 19));
         add(addresslabel);
 
@@ -216,7 +215,7 @@ public class SignUpPg1 extends JFrame {
         // create a user city label
         JLabel citylabel = new JLabel("City:");
         citylabel.setBounds(100, 500, 100, 30);
-        citylabel.setForeground(TEXT_COLOR);
+        citylabel.setForeground(CommonConstants.TEXT_COLOR);
         citylabel.setFont(new Font("Tahoma", Font.BOLD, 19));
         add(citylabel);
 
@@ -229,7 +228,7 @@ public class SignUpPg1 extends JFrame {
         // create a user pincode label
         JLabel pincodelabel = new JLabel("Pin Code:");
         pincodelabel.setBounds(100, 550, 100, 30);
-        pincodelabel.setForeground(TEXT_COLOR);
+        pincodelabel.setForeground(CommonConstants.TEXT_COLOR);
         pincodelabel.setFont(new Font("Tahoma", Font.BOLD, 19));
         add(pincodelabel);
 
@@ -242,7 +241,7 @@ public class SignUpPg1 extends JFrame {
         // create a user state label
         JLabel statelabel = new JLabel("State:");
         statelabel.setBounds(100, 600, 100, 30);
-        statelabel.setForeground(TEXT_COLOR);
+        statelabel.setForeground(CommonConstants.TEXT_COLOR);
         statelabel.setFont(new Font("Tahoma", Font.BOLD, 19));
         add(statelabel);
 

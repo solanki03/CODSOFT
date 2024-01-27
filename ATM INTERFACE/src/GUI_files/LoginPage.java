@@ -8,21 +8,45 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class LoginPage extends BaseInterface {
+import Constants.CommonConstants;
+
+public class LoginPage extends JFrame{
 
     public LoginPage() {
+        // set the tite of the frame
+        super("Automated Teller Machine");
+
+        // set the size of the GUI
+        setSize(700, 520);
+
+        // set layout null to place components in the page
+        setLayout(null);
+
+        // set GUI in the center of the screen
+        setLocationRelativeTo(null);
+
+        // prevent any resize of our GUI
+        setResizable(false);
+
+        // configure GUI to end the program's process once it has been closed
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        //create the background color of GUI
+        getContentPane().setBackground(CommonConstants.PRIMARY_COLOR);
+
         addGuiComponents();
     }
 
     private void addGuiComponents() {
 
         // add logo to the frame
-        ImageIcon logo1 = new ImageIcon(ClassLoader.getSystemResource("Icons/Img2.png"));
+        ImageIcon logo1 = new ImageIcon(ClassLoader.getSystemResource("Icons/bankLogo.png"));
         Image img = logo1.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT);
         ImageIcon imgIcon = new ImageIcon(img);
         JLabel imglabel = new JLabel(imgIcon);
@@ -31,14 +55,14 @@ public class LoginPage extends BaseInterface {
         // create a Jlable for welcome note
         JLabel titleLable = new JLabel("WELCOME TO ATM");
         titleLable.setBounds(230, 30, 290, 50);
-        titleLable.setForeground(TEXT_COLOR);
+        titleLable.setForeground(CommonConstants.TEXT_COLOR);
         titleLable.setFont(new Font("Tahoma", Font.BOLD, 30));
         titleLable.setHorizontalAlignment(SwingConstants.CENTER);
 
         // create a Jlable for card no.
         JLabel cardNoLable = new JLabel("Enter the card no. :");
         cardNoLable.setBounds(110, 180, 200, 20);
-        cardNoLable.setForeground(TEXT_COLOR);
+        cardNoLable.setForeground(CommonConstants.TEXT_COLOR);
         cardNoLable.setFont(new Font("Tahoma", Font.BOLD, 20));
 
         // create a JTextField to get card no.
@@ -49,7 +73,7 @@ public class LoginPage extends BaseInterface {
         // create a Jlable for pin no.
         JLabel pinJLable = new JLabel("Enter the pin :");
         pinJLable.setBounds(110, 220, 190, 22);
-        pinJLable.setForeground(TEXT_COLOR);
+        pinJLable.setForeground(CommonConstants.TEXT_COLOR);
         pinJLable.setFont(new Font("Tahoma", Font.BOLD, 20));
 
         // create a JTextField to get the pin
