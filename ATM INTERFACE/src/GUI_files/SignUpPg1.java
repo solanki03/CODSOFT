@@ -4,12 +4,15 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -18,10 +21,15 @@ import javax.swing.SwingConstants;
 import com.toedter.calendar.JDateChooser;
 import Constants.CommonConstants;
 
-public class SignUpPg1 extends JFrame {
+public class SignUpPg1 extends JFrame implements ActionListener {
 
-    //public static Color TEXT_COLOR = Color.decode("#FFC300");
-    //final Color REG_COLOR = Color.decode("#900C3F");
+    int randomNum;
+    JTextField userNameTextField, fNameTextField, dobTextField, emailTextField, cityTextField, pincodeTextField,
+            stateTextField;
+    JTextArea addressTextArea;
+    JButton nextButton;
+    JDateChooser dateSelect;
+    JRadioButton male, female, transgender, married, unmarried, others;
 
     public SignUpPg1() {
         // set the tite of the game
@@ -51,7 +59,7 @@ public class SignUpPg1 extends JFrame {
     private void addComponents() {
 
         // generate a random form number
-        int randomNum = 1 + (int) (Math.random() * ((9999 - 1) + 1));
+        randomNum = 1 + (int) (Math.random() * ((9999 - 1) + 1));
 
         // create a application form label
         JLabel formNo = new JLabel("APPLICATION FORM NO. " + randomNum);
@@ -84,7 +92,7 @@ public class SignUpPg1 extends JFrame {
         add(userNamelabel);
 
         // create a JTextField to get username
-        JTextField userNameTextField = new JTextField();
+        userNameTextField = new JTextField();
         userNameTextField.setBounds(300, 150, 400, 30);
         userNameTextField.setFont(new Font("Arial", Font.BOLD, 15));
         add(userNameTextField);
@@ -97,7 +105,7 @@ public class SignUpPg1 extends JFrame {
         add(fNamelabel);
 
         // create a JTextField to get father's name
-        JTextField fNameTextField = new JTextField();
+        fNameTextField = new JTextField();
         fNameTextField.setBounds(300, 200, 400, 30);
         fNameTextField.setFont(new Font("Arial", Font.BOLD, 15));
         add(fNameTextField);
@@ -110,8 +118,8 @@ public class SignUpPg1 extends JFrame {
         add(DOBlabel);
 
         // create a calender for DOB
-        JDateChooser dateSelect = new JDateChooser();
-        dateSelect.setBounds(300,250,400,30);
+        dateSelect = new JDateChooser();
+        dateSelect.setBounds(300, 250, 400, 30);
         dateSelect.setFont(new Font("Arial", Font.BOLD, 15));
         add(dateSelect);
 
@@ -123,28 +131,29 @@ public class SignUpPg1 extends JFrame {
         add(genderlabel);
 
         // create a radio button for gender selection
-        JRadioButton male = new JRadioButton("Male");
-        male.setBounds(300,300,60,30);
+        male = new JRadioButton("Male");
+        male.setBounds(300, 300, 60, 30);
         male.setFont(new Font("Arial", Font.BOLD, 15));
         male.setForeground(CommonConstants.TEXT_COLOR);
         male.setBackground(CommonConstants.REG_COLOR);
         add(male);
 
-        JRadioButton female = new JRadioButton("Female");
-        female.setBounds(435,300,80,30);
+        female = new JRadioButton("Female");
+        female.setBounds(435, 300, 80, 30);
         female.setFont(new Font("Arial", Font.BOLD, 15));
         female.setForeground(CommonConstants.TEXT_COLOR);
         female.setBackground(CommonConstants.REG_COLOR);
         add(female);
 
-        JRadioButton transgender = new JRadioButton("Transgender");
-        transgender.setBounds(580,300,130,30);
+        transgender = new JRadioButton("Transgender");
+        transgender.setBounds(580, 300, 130, 30);
         transgender.setFont(new Font("Arial", Font.BOLD, 15));
         transgender.setForeground(CommonConstants.TEXT_COLOR);
         transgender.setBackground(CommonConstants.REG_COLOR);
         add(transgender);
 
-        // add fuctionality to select any one of the three options - Male, Female & Transgender
+        // add fuctionality to select any one of the three options - Male, Female &
+        // Transgender
         ButtonGroup genderGroup = new ButtonGroup();
         genderGroup.add(male);
         genderGroup.add(female);
@@ -158,7 +167,7 @@ public class SignUpPg1 extends JFrame {
         add(emaillabel);
 
         // create a JTextField to get email
-        JTextField emailTextField = new JTextField();
+        emailTextField = new JTextField();
         emailTextField.setBounds(300, 350, 400, 30);
         emailTextField.setFont(new Font("Arial", Font.BOLD, 15));
         add(emailTextField);
@@ -171,28 +180,29 @@ public class SignUpPg1 extends JFrame {
         add(maritalStatuslabel);
 
         // create a radio button for gMarital Status
-        JRadioButton married = new JRadioButton("Married");
-        married.setBounds(300,400,100,30);
+        married = new JRadioButton("Married");
+        married.setBounds(300, 400, 100, 30);
         married.setFont(new Font("Arial", Font.BOLD, 15));
         married.setForeground(CommonConstants.TEXT_COLOR);
         married.setBackground(CommonConstants.REG_COLOR);
         add(married);
 
-        JRadioButton unmarried = new JRadioButton("Unmarried");
-        unmarried.setBounds(450,400,120,30);
+        unmarried = new JRadioButton("Unmarried");
+        unmarried.setBounds(450, 400, 120, 30);
         unmarried.setFont(new Font("Arial", Font.BOLD, 15));
         unmarried.setForeground(CommonConstants.TEXT_COLOR);
         unmarried.setBackground(CommonConstants.REG_COLOR);
         add(unmarried);
 
-        JRadioButton others = new JRadioButton("Other");
-        others.setBounds(630,400,80,30);
+        others = new JRadioButton("Other");
+        others.setBounds(630, 400, 80, 30);
         others.setFont(new Font("Arial", Font.BOLD, 15));
         others.setForeground(CommonConstants.TEXT_COLOR);
         others.setBackground(CommonConstants.REG_COLOR);
         add(others);
 
-        // add fuctionality to select any one of the three options - married, unmarried & other
+        // add fuctionality to select any one of the three options - married, unmarried
+        // & other
         ButtonGroup MStatusGroup = new ButtonGroup();
         MStatusGroup.add(married);
         MStatusGroup.add(unmarried);
@@ -206,10 +216,10 @@ public class SignUpPg1 extends JFrame {
         add(addresslabel);
 
         // create a JTextField to get address
-        JTextArea addressTextArea = new JTextArea();
+        addressTextArea = new JTextArea();
         addressTextArea.setBounds(300, 450, 400, 30);
         addressTextArea.setFont(new Font("Arial", Font.BOLD, 15));
-        addressTextArea.setMargin(new Insets(5, 3,1,3));
+        addressTextArea.setMargin(new Insets(5, 3, 1, 3));
         add(addressTextArea);
 
         // create a user city label
@@ -220,7 +230,7 @@ public class SignUpPg1 extends JFrame {
         add(citylabel);
 
         // create a JTextField to get city
-        JTextField cityTextField = new JTextField();
+        cityTextField = new JTextField();
         cityTextField.setBounds(300, 500, 400, 30);
         cityTextField.setFont(new Font("Arial", Font.BOLD, 15));
         add(cityTextField);
@@ -233,7 +243,7 @@ public class SignUpPg1 extends JFrame {
         add(pincodelabel);
 
         // create a JTextField to get pincode
-        JTextField pincodeTextField = new JTextField();
+        pincodeTextField = new JTextField();
         pincodeTextField.setBounds(300, 550, 400, 30);
         pincodeTextField.setFont(new Font("Arial", Font.BOLD, 15));
         add(pincodeTextField);
@@ -246,17 +256,84 @@ public class SignUpPg1 extends JFrame {
         add(statelabel);
 
         // create a JTextField to get state
-        JTextField stateTextField = new JTextField();
+        stateTextField = new JTextField();
         stateTextField.setBounds(300, 600, 400, 30);
         stateTextField.setFont(new Font("Arial", Font.BOLD, 15));
         add(stateTextField);
 
         // CREATE A NEXT BUTTON
-        JButton nextButton = new JButton("NEXT");
+        nextButton = new JButton("NEXT");
         nextButton.setBounds(600, 680, 150, 26);
         nextButton.setFont(new Font("Tahoma", Font.BOLD, 15));
         nextButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         add(nextButton);
 
+        // add ActionListener
+        nextButton.addActionListener(this);
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        String formNo = "" + randomNum; // ""+ --> used to convert int/long values to string
+        String name = userNameTextField.getText();
+        String fname = fNameTextField.getText();
+        String dob = ((JTextField) dateSelect.getDateEditor().getUiComponent()).getText();
+        String gender = null;
+
+        // check which gender is selected
+        if (male.isSelected()) {
+            gender = "Male";
+        } else if (female.isSelected()) {
+            gender = "Female";
+        } else if (transgender.isSelected()) {
+            gender = "Transgender";
+        }
+
+        String email = emailTextField.getText();
+        String maritalS = null;
+
+        // check which married status is selected
+        if (married.isSelected()) {
+            maritalS = "Married";
+        } else if (unmarried.isSelected()) {
+            maritalS = "Unmarried";
+        } else if (others.isSelected()) {
+            maritalS = "Other";
+        }
+
+        String address = addressTextArea.getText();
+        String city = cityTextField.getText();
+        String state = stateTextField.getText();
+        String pinCode = pincodeTextField.getText();
+
+        try {
+            if (name.isBlank()) {
+                JOptionPane.showMessageDialog(null, "Please enter your name...");
+            } else if (fname.isBlank()) {
+                JOptionPane.showMessageDialog(null, "Please enter your father's name...");
+            } else if (dob.isBlank()) {
+                JOptionPane.showMessageDialog(null, "Please enter your Date of Birth");
+            } else if (email.isBlank()) {
+                JOptionPane.showMessageDialog(null, "Please enter your email address");
+            } else if (address.isBlank()) {
+                JOptionPane.showMessageDialog(null, "Please enter your address");
+            } else if (city.isBlank()) {
+                JOptionPane.showMessageDialog(null, "Please enter your the city");
+            } else if (pinCode.isBlank()) {
+                JOptionPane.showMessageDialog(null, "Please enter your the pincode");
+            } else if (state.isBlank()) {
+                JOptionPane.showMessageDialog(null, "Please enter your the state");
+            } else {
+                // access the CommonConstants class and write the table query
+                CommonConstants cc = new CommonConstants();
+                String query = "insert into signup values('" + formNo + "','" + name + "','" + fname + "','" + dob
+                        + "','" + gender + "','" + email + "','" + maritalS + "','" + address + "','" + city + "','"
+                        + pinCode + "','" + state + "')";
+                cc.s.executeUpdate(query);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
