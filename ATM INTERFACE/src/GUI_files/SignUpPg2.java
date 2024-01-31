@@ -3,13 +3,11 @@ package GUI_files;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -56,15 +54,7 @@ public class SignUpPg2 extends JFrame implements ActionListener {
 
     private void addComponents() {
 
-        // add logo to the frame
-        ImageIcon logo2 = new ImageIcon(ClassLoader.getSystemResource("Icons/regLogo.png"));
-        Image img = logo2.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT);
-        ImageIcon imgIcon = new ImageIcon(img);
-        JLabel imglabel = new JLabel(imgIcon);
-        imglabel.setBounds(110, 15, 60, 60);
-        // add(imglabel);
-
-        // create a personal details label
+        // create a additional details label
         JLabel additionalDetails = new JLabel("Page 2: Additional Details");
         additionalDetails.setBounds(290, 80, 320, 30);
         additionalDetails.setForeground(CommonConstants.TEXT_COLOR);
@@ -275,12 +265,12 @@ public class SignUpPg2 extends JFrame implements ActionListener {
         String Saadhaar = AadhaarTextField.getText();
 
         try {
-            if (Sreligion.isBlank()) {
-                JOptionPane.showMessageDialog(null, "Please enter your name...");
-            } else if (Span.isBlank()) {
-                JOptionPane.showMessageDialog(null, "Please enter your father's name...");
-            } else if (Saadhaar.isBlank()) {
-                JOptionPane.showMessageDialog(null, "Please enter your Date of Birth");
+            if(!YESbutton1.isSelected() && !NObutton1.isSelected()){
+                JOptionPane.showMessageDialog(null, "Please select your criteria from Senior Citizen field");
+            } else if(!YESbutton2.isSelected() && !NObutton2.isSelected()){
+                JOptionPane.showMessageDialog(null, "Please select your criteria from Existing Account field");
+            }else if (Span.isBlank() || Saadhaar.isBlank()) {
+                JOptionPane.showMessageDialog(null, "Please fill up all the fields");
             } else {
                 // access the CommonConstants class and write the table query
                 CommonConstants cc = new CommonConstants();
@@ -290,6 +280,8 @@ public class SignUpPg2 extends JFrame implements ActionListener {
                 cc.s.executeUpdate(query);
 
                 // load SignUpPg3 ---> Application Form 3
+                setVisible(false);
+                new SignUpPg3(formno).setVisible(true);
             }
         } catch (Exception e) {
             e.printStackTrace();
