@@ -308,22 +308,9 @@ public class SignUpPg1 extends JFrame implements ActionListener {
         String pinCode = pincodeTextField.getText();
 
         try {
-            if (name.isBlank()) {
-                JOptionPane.showMessageDialog(null, "Please enter your name...");
-            } else if (fname.isBlank()) {
-                JOptionPane.showMessageDialog(null, "Please enter your father's name...");
-            } else if (dob.isBlank()) {
-                JOptionPane.showMessageDialog(null, "Please enter your Date of Birth");
-            } else if (email.isBlank()) {
-                JOptionPane.showMessageDialog(null, "Please enter your email address");
-            } else if (address.isBlank()) {
-                JOptionPane.showMessageDialog(null, "Please enter your address");
-            } else if (city.isBlank()) {
-                JOptionPane.showMessageDialog(null, "Please enter your the city");
-            } else if (pinCode.isBlank()) {
-                JOptionPane.showMessageDialog(null, "Please enter your the pincode");
-            } else if (state.isBlank()) {
-                JOptionPane.showMessageDialog(null, "Please enter your the state");
+            if (name.isBlank() || fname.isBlank() || dob.isBlank() || email.isBlank() || address.isBlank()
+                    || city.isBlank() || pinCode.isBlank() || state.isBlank()) {
+                JOptionPane.showMessageDialog(null, "Please fill up all the fields!");
             } else {
                 // access the CommonConstants class and write the table query
                 CommonConstants cc = new CommonConstants();
@@ -331,6 +318,10 @@ public class SignUpPg1 extends JFrame implements ActionListener {
                         + "','" + gender + "','" + email + "','" + maritalS + "','" + address + "','" + city + "','"
                         + pinCode + "','" + state + "')";
                 cc.s.executeUpdate(query);
+
+                // load SignUpPg2 ---> Application Form 2
+                setVisible(false);
+                new SignUpPg2(formNo).setVisible(true);
             }
         } catch (Exception e) {
             e.printStackTrace();
