@@ -5,11 +5,13 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -125,12 +127,40 @@ public class LoginPage extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == clearButton) {
+
             // clear both text fields
             cardnoTextField.setText("");
             pinPWField.setText("");
+
         } else if (e.getSource() == loginButton) {
 
+            CommonConstants conn = new CommonConstants();
+
+            // get the card no and pin from user
+            String cardNo = cardnoTextField.getText();
+            String pinNo = new String(pinPWField.getPassword());
+
+            String query = "select * from login where Card_Number = '"+ cardNo +"' and PIN_Number = '"+ pinNo +"'";
+            try {
+                // store the results in ResultSet to access them in further
+                ResultSet resultSet = conn.s.executeQuery(query);
+                
+                //check the data is retrived or not / is in the database or not
+                if(resultSet.isBeforeFirst()){
+
+                    // close login page and open the transaction page
+                    setVisible(false);
+                    new Transactions(pinNo).setVisible(true);
+
+                } else{
+                    JOptionPane.showMessageDialog(null,"Declaration of Card Number or Pin is invalid! \nYou're requented to enter the valid details. \n\nIf you're not registered yet, then please sign up.");
+                }
+            } catch (Exception x) {
+                x.printStackTrace();
+            }
+
         } else if (e.getSource() == registrationButton){
+
             setVisible(false);
             new SignUpPg1().setVisible(true);
 
