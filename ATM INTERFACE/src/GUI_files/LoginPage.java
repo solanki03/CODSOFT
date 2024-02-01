@@ -150,7 +150,7 @@ public class LoginPage extends JFrame implements ActionListener{
 
                     // close login page and open the transaction page
                     setVisible(false);
-                    new Transactions(pinNo).setVisible(true);
+                    new AtmTransaction(pinNo).setVisible(true);
 
                 } else{
                     JOptionPane.showMessageDialog(null,"Declaration of Card Number or Pin is invalid! \nYou're requented to enter the valid details. \n\nIf you're not registered yet, then please sign up.");
