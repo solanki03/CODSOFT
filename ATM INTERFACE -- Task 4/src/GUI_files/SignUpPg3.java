@@ -16,10 +16,10 @@ import javax.swing.JRadioButton;
 
 import Constants.CommonConstants;
 
-public class SignUpPg3 extends JFrame implements ActionListener{
+public class SignUpPg3 extends JFrame implements ActionListener {
 
     JRadioButton savingAccButton, fdAccButton, currentAccButton, rdAccButton;
-    JCheckBox c1, c2, c3, c4,c5,c6,c7;
+    JCheckBox c1, c2, c3, c4, c5, c6, c7;
     JButton submitButton, cancelButton;
     String formno;
 
@@ -150,7 +150,7 @@ public class SignUpPg3 extends JFrame implements ActionListener{
         serviceRType.setFont(new Font("Tahoma", Font.BOLD, 20));
         add(serviceRType);
 
-        //create JCheckBoxs for Services Required field
+        // create JCheckBoxs for Services Required field
         c1 = new JCheckBox("ATM Card");
         c1.setForeground(CommonConstants.TEXT_COLOR);
         c1.setBackground(CommonConstants.REG_COLOR);
@@ -220,69 +220,89 @@ public class SignUpPg3 extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        
-        if(ae.getSource() == submitButton){
+
+        if (ae.getSource() == submitButton) {
 
             String accountType = null;
-            //check which option is selected
+            // check which option is selected
             if (savingAccButton.isSelected()) {
                 accountType = "Savings Account";
             } else if (fdAccButton.isSelected()) {
                 accountType = "Fixed Deposit Account";
-            }else if (currentAccButton.isSelected()) {
+            } else if (currentAccButton.isSelected()) {
                 accountType = "Current Account";
-            }else if (rdAccButton.isSelected()) {
+            } else if (rdAccButton.isSelected()) {
                 accountType = "Recurring Deposit Account";
             }
 
             Random random = new Random();
             String generateCardNo = "" + Math.abs((random.nextLong() % 9000000L) + 5030859000000000L);
-            
-            String generatePIN = "" + Math.abs((random.nextLong() % 9000L )+ 1000L);
 
-            // in case of facility, it can have a lot of fields. That's why we are concating it.
+            String generatePIN = "" + Math.abs((random.nextLong() % 9000L) + 1000L);
+
+            // in case of facility, it can have a lot of fields. That's why we are concating
+            // it.
             String facility = "";
-            if(c1.isSelected()){
-                facility = facility + " ATM Card";
-            } else if(c2.isSelected()){
-                facility = facility + " Internet Banking";
-            }else if(c3.isSelected()){
-                facility = facility + " Mobile Banking";
-            }else if(c4.isSelected()){
-                facility = facility + " Email & SMS Alerts";
-            }else if(c5.isSelected()){
-                facility = facility + " Cheque Book";
-            }else if(c6.isSelected()){
-                facility = facility + " E-Statement";
+
+            if (c1.isSelected()) {
+                facility += " ATM Card";
+            }
+            if (c2.isSelected()) {
+                facility += " Internet Banking";
+            }
+            if (c3.isSelected()) {
+                facility += " Mobile Banking";
+            }
+            if (c4.isSelected()) {
+                facility += " Email & SMS Alerts";
+            }
+            if (c5.isSelected()) {
+                facility += " Cheque Book";
+            }
+            if (c6.isSelected()) {
+                facility += " E-Statement";
             }
 
             try {
 
-                if(!savingAccButton.isSelected() && !fdAccButton.isSelected() && !currentAccButton.isSelected() && !rdAccButton.isSelected()){
+                if (!savingAccButton.isSelected() && !fdAccButton.isSelected() && !currentAccButton.isSelected()
+                        && !rdAccButton.isSelected()) {
                     JOptionPane.showMessageDialog(null, "Account type is required!");
-                } else if(!c1.isSelected() && !c2.isSelected()&& !c3.isSelected()&& !c4.isSelected()&& !c5.isSelected()&& !c6.isSelected()){
-                    JOptionPane.showMessageDialog(null,"Please select you service requirements!");
-                } else if(!c7.isSelected()){
+                } else if (!c1.isSelected() && !c2.isSelected() && !c3.isSelected() && !c4.isSelected()
+                        && !c5.isSelected() && !c6.isSelected()) {
+                    JOptionPane.showMessageDialog(null, "Please select you service requirements!");
+                } else if (!c7.isSelected()) {
                     JOptionPane.showMessageDialog(null, "Select the datail confirmation checkbox to proceed further");
                 } else {
+
                     // access the CommonConstants class and write the table query
                     CommonConstants cc = new CommonConstants();
-                    String query1 = "insert into signupThree values('" + formno + "','" + accountType + "','" + generateCardNo + "','" + generatePIN
-                        + "','" + facility + "')";
-                    String query2 = "insert into login values('" + formno + "','" + generateCardNo + "','" + generatePIN + "')";
+                    String query1 = "insert into signupThree values('" + formno + "','" + accountType + "','"
+                            + generateCardNo + "','" + generatePIN
+                            + "','" + facility + "')";
+                    String query2 = "insert into login values('" + formno + "','" + generateCardNo + "','" + generatePIN
+                            + "')";
 
                     cc.s.executeUpdate(query1);
                     cc.s.executeUpdate(query2);
 
-                    JOptionPane.showMessageDialog(null,"Card Number:  "+ generateCardNo + "\nPIN Number:  " + generatePIN);
-                }
+                    JOptionPane.showMessageDialog(null,
+                            "Card Number:  " + generateCardNo + "\nPIN Number:  " + generatePIN);
 
+                    // close the current window and open Deposit window
+                    setVisible(false);
+                    new Deposit(generatePIN).setVisible(true);
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-        } else if(ae.getSource() == cancelButton){
+        } else if (ae.getSource() == cancelButton) {
+
+            // close the current window and open Login Page window
+            setVisible(false);
+            new LoginPage().setVisible(true);
 
         }
     }

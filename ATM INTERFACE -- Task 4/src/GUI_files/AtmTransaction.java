@@ -52,8 +52,8 @@ public class AtmTransaction extends JFrame implements ActionListener{
         add(imglabel);
 
         // create a label to display msg
-        JLabel textLabel = new JLabel("Please Select Your Transaction");
-        textLabel.setBounds(240, 200, 250, 30);
+        JLabel textLabel = new JLabel("Please Select Your Transaction Method");
+        textLabel.setBounds(215, 200, 300, 30);
         textLabel.setForeground(Color.WHITE);
         textLabel.setFont(new Font("Calibri", Font.BOLD, 16));
         imglabel.add(textLabel);
@@ -74,7 +74,7 @@ public class AtmTransaction extends JFrame implements ActionListener{
         imglabel.add(withdrawlButton);
         withdrawlButton.addActionListener(this);
 
-        // CREATE A WITHDRAWL BUTTON
+        // CREATE A FAST CASH BUTTON
         fastCashButton = new JButton("FAST CASH");
         fastCashButton.setBounds(190, 335, 130, 20);
         fastCashButton.setFont(new Font("Calibri", Font.BOLD, 12));
@@ -106,7 +106,7 @@ public class AtmTransaction extends JFrame implements ActionListener{
         imglabel.add(balanceEnquiryButton);
         balanceEnquiryButton.addActionListener(this);
 
-        // CREATE A EXIT PIN BUTTON
+        // CREATE A EXIT BUTTON
         exitButton = new JButton("EXIT");
         exitButton.setBounds(375, 408, 130, 20);
         exitButton.setFont(new Font("Calibri", Font.BOLD, 12));
@@ -119,7 +119,45 @@ public class AtmTransaction extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
         
         if(ae.getSource() == exitButton){
+
+            // closes the current window
             System.exit(0);
+
+        } else if(ae.getSource() == depositButton){
+
+            // closes the current window and open Deposit window
+            setVisible(false);
+            new Deposit(pinNo).setVisible(true);
+
+        } else if(ae.getSource() == withdrawlButton){
+
+            // closes the current window and open Withdrawl window
+            setVisible(false);
+            new Withdrawl(pinNo).setVisible(true);
+
+        } else if(ae.getSource() == fastCashButton){
+
+            // closes the current window and open FastCash window
+            setVisible(false);
+            new FastCash(pinNo).setVisible(true);
+
+        } else if(ae.getSource() == changePINButton){
+
+            // closes the current window and open Change PIN window
+            setVisible(false);
+            new ChangePIN(pinNo).setVisible(true);
+
+        } else if(ae.getSource() == balanceEnquiryButton){
+
+            // closes the current window and open Balance Enquiry window
+            setVisible(false);
+            new BalanceEnquiry(pinNo).setVisible(true);
+            
+        } else if(ae.getSource() == miniStatementButton){
+
+            // open Balance Enquiry window
+            new MiniStatement(pinNo).setVisible(true);
+            
         }
     }
 
