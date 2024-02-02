@@ -27,7 +27,7 @@ public class SignUpPg1 extends JFrame implements ActionListener {
     JTextField userNameTextField, fNameTextField, dobTextField, emailTextField, cityTextField, pincodeTextField,
             stateTextField;
     JTextArea addressTextArea;
-    JButton nextButton;
+    JButton nextButton, backButton;
     JDateChooser dateSelect;
     JRadioButton male, female, transgender, married, unmarried, others;
 
@@ -267,64 +267,82 @@ public class SignUpPg1 extends JFrame implements ActionListener {
         nextButton.setFont(new Font("Tahoma", Font.BOLD, 15));
         nextButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         add(nextButton);
-
-        // add ActionListener
         nextButton.addActionListener(this);
+
+        // CREATE A BACK BUTTON
+        backButton = new JButton("BACK");
+        backButton.setBounds(100, 680, 150, 26);
+        backButton.setFont(new Font("Tahoma", Font.BOLD, 15));
+        backButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        add(backButton);
+        backButton.addActionListener(this);
 
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        String formNo = "" + randomNum; // ""+ --> used to convert int/long values to string
-        String name = userNameTextField.getText();
-        String fname = fNameTextField.getText();
-        String dob = ((JTextField) dateSelect.getDateEditor().getUiComponent()).getText();
-        String gender = null;
 
-        // check which gender is selected
-        if (male.isSelected()) {
-            gender = "Male";
-        } else if (female.isSelected()) {
-            gender = "Female";
-        } else if (transgender.isSelected()) {
-            gender = "Transgender";
-        }
+        if (ae.getSource() == backButton) {
 
-        String email = emailTextField.getText();
-        String maritalS = null;
+            // close the current window and open Login page window
+            setVisible(false);
+            new LoginPage().setVisible(true);
 
-        // check which married status is selected
-        if (married.isSelected()) {
-            maritalS = "Married";
-        } else if (unmarried.isSelected()) {
-            maritalS = "Unmarried";
-        } else if (others.isSelected()) {
-            maritalS = "Other";
-        }
+        } else if (ae.getSource() == nextButton) {
 
-        String address = addressTextArea.getText();
-        String city = cityTextField.getText();
-        String state = stateTextField.getText();
-        String pinCode = pincodeTextField.getText();
+            String formNo = "" + randomNum; // ""+ --> used to convert int/long values to string
+            String name = userNameTextField.getText();
+            String fname = fNameTextField.getText();
+            String dob = ((JTextField) dateSelect.getDateEditor().getUiComponent()).getText();
+            String gender = null;
 
-        try {
-            if (name.isBlank() || fname.isBlank() || dob.isBlank() || email.isBlank() || address.isBlank()
-                    || city.isBlank() || pinCode.isBlank() || state.isBlank()) {
-                JOptionPane.showMessageDialog(null, "Please fill up all the fields!");
-            } else {
-                // access the CommonConstants class and write the table query
-                CommonConstants cc = new CommonConstants();
-                String query = "insert into signup values('" + formNo + "','" + name + "','" + fname + "','" + dob
-                        + "','" + gender + "','" + email + "','" + maritalS + "','" + address + "','" + city + "','"
-                        + pinCode + "','" + state + "')";
-                cc.s.executeUpdate(query);
-
-                // load SignUpPg2 ---> Application Form 2
-                setVisible(false);
-                new SignUpPg2(formNo).setVisible(true);
+            // check which gender is selected
+            if (male.isSelected()) {
+                gender = "Male";
+            } else if (female.isSelected()) {
+                gender = "Female";
+            } else if (transgender.isSelected()) {
+                gender = "Transgender";
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+            String email = emailTextField.getText();
+            String maritalS = null;
+
+            // check which married status is selected
+            if (married.isSelected()) {
+                maritalS = "Married";
+            } else if (unmarried.isSelected()) {
+                maritalS = "Unmarried";
+            } else if (others.isSelected()) {
+                maritalS = "Other";
+            }
+
+            String address = addressTextArea.getText();
+            String city = cityTextField.getText();
+            String state = stateTextField.getText();
+            String pinCode = pincodeTextField.getText();
+
+            try {
+                if (name.isBlank() || fname.isBlank() || dob.isBlank() || email.isBlank() || address.isBlank()
+                        || city.isBlank() || pinCode.isBlank() || state.isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Please fill up all the fields!");
+                } else {
+                    // access the CommonConstants class and write the table query
+                    CommonConstants cc = new CommonConstants();
+                    String query = "insert into signup values('" + formNo + "','" + name + "','" + fname + "','" + dob
+                            + "','" + gender + "','" + email + "','" + maritalS + "','" + address + "','" + city + "','"
+                            + pinCode + "','" + state + "')";
+                    cc.s.executeUpdate(query);
+
+                    // load SignUpPg2 ---> Application Form 2
+                    setVisible(false);
+                    new SignUpPg2(formNo).setVisible(true);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
+
     }
 }
